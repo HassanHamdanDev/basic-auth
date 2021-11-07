@@ -13,11 +13,11 @@ class Collection {
         }
     }
 
-    async read(id) {
+    async read(userName) {
         let record;
         try {
-            if (id) {
-                record = await this.model.findOne({ where: { id: id } })
+            if (userName) {
+                record = await this.model.findOne({ where: { userName: userName } })
             } else {
                 record = await this.model.findAll()
             }
@@ -25,25 +25,24 @@ class Collection {
         } catch (e) {
             console.error('error in reading record/s for model', this.model.name)
         }
-
     }
 
-    async update(id, obj) {
+    async update(userName, obj) {
         try {
-            let recordId = await this.model.findOne({ where: { id: id } })
+            let recordId = await this.model.findOne({ where: { userName: userName } })
             let updateRecord = await recordId.update(obj);
             return updateRecord;
         } catch (e) {
-            console.error('error in updating record for model', this.model.name, `id:${id}`)
+            console.error('error in updating record for model', this.model.name, `userName:${userName}`)
         }
     }
 
     async delete(id) {
         try {
-            let deletedRecord = await this.model.destroy({ where: { id: id } });
+            let deletedRecord = await this.model.destroy({ where: { userName: userName } });
             return deletedRecord;
         } catch (e) {
-            console.error('error in deleting record for model', this.model.name, `id:${id}`)
+            console.error('error in deleting record for model', this.model.name, `userName:${userName}`)
         }
     }
 
