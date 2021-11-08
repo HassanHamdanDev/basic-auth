@@ -11,6 +11,7 @@ const usersRouter = require('./auth/router');
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
+
 server.use(usersRouter);
 server.use('*', notFoundHandler);
 server.use(errorHandler);
